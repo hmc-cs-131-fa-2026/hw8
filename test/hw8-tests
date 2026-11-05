@@ -1,0 +1,187 @@
+"""CS 131 HW 8: Lambda Calculus
+"""
+
+"""
+Leq (10 points)
+==========================
+"""
+
++2 5 <= 2
+? Leq 5 2
+! False
+
++2 2 <= 5
+? Leq 2 5
+! True
+
++2 3 <= 3
+? Leq 3 3
+! True
+
++2 4 <= 3
+? Leq 4 3
+! False
+
++2 7 <= 0
+? Leq 7 0
+! False
+
+
+"""
+Equal (10 points)
+============================
+"""
+
++2 5 == 2
+? Equal 5 2
+! False
+
++2 2 == 5
+? Equal 2 5
+! False
+
++2 3 == 3
+? Equal 3 3
+! True
+
++2 4 == 3
+? Equal 4 3
+! False
+
++2 0 == 0
+? Equal 0 0
+! True
+
+"""
+Maybe (20 points)
+============================
+"""
+
++10 Nothing
+? Nothing wn wj
+! wn
+
++10 Just
+? (Just a) wn wj
+! wj a
+
+"""
+Lists (10 points)
+============================
+"""
+
++2 Nil Encoding
+? Nil wn wc
+! wn
+
++2 Cons Encoding
+? (Cons h t) wn wc
+! wc h t
+
++2 IsEmpty of Nil
+? IsEmpty Nil
+! True
+
++2 IsEmpty of Cons 
+? IsEmpty (Cons j k)
+! False
+
++1 Head of Cons
+? Head (Cons j k)
+! j
+
++1 Tail of Cons
+? Tail (Cons j k)
+! k
+
+"""
+Trees (10 points)
+============================
+"""
+
++5 Leaf
+? Leaf wl wb
+! wl
+
++5 Branch
+? (Branch a b c) wn wj
+! wj a b c
+
+
+"""
+Fibonacci without recursion/fixed-points (10 points)
+===============================================================
+"""
+
++2 -Y Fibonacci 0
+? Fib 0
+! 0
+
++2 -Y Fibonacci 1
+? Fib 1
+! 1
+
++2 -Y Fibonacci 2
+? Fib 2
+! 1
+
++2 -Y Fibonacci 3
+? Fib 3
+! 2
+
++2 -Y Fibonacci 6
+? Fib 6
+! 8
+
+"""
+Step function (20 points)
+====================================
+"""
+
++4 Step 2
+? Step 2
+! 1
+
++4 Step 8
+? Step 8
+! 4
+
++4 Step 1
+? Step 1
+! 4
+
++4 Step 3
+? Step 3
+! 10
+
++4 Step 7
+? Step 7
+! 22
+
+
+"""
+Tnpo function (10 points)
+====================================
+"""
+
++4 Tnpo 1
+? Tnpo 1
+! 0
+
++2 Tnpo 8
+? Tnpo 8
+! 3
+
++2 Tnpo 5
+? Tnpo 5
+! 5
+
++2 Tnpo 3
+? Tnpo 3
+! 7
+
+
+*SHOWPOINTS*
+
+"""
+"""

@@ -1,0 +1,143 @@
+# CS 131 HW 8: Lambda Calculus
+#
+# This is the only file you edit. The assignment is on the course site:
+#   https://www.cs.hmc.edu/~bang/cs131/assignments/hw08/
+#
+# In lc:  :load hw8.lc   (then :reload after every edit)
+# Tests:  ./run-tests
+
+
+# --- Booleans ----------------------------------------
+
+# These are the important facts about booleans & their operations
+#
+#     ((True  m) n)  -->*  m
+#     ((False m) n)  -->*  n
+
+#     (Not True)  -->* False
+#     (Not False) -->* True
+
+#     ((And True)  True)  -->* True      ((Or True)  True)  -->* True
+#     ((And True)  False) -->* False     ((Or True)  False) -->* True
+#     ((And False) True)  -->* False     ((Or False) True)  -->* True
+#     ((And False) False) -->* False     ((Or False) False) -->* False
+
+True  = (\t.(\f.t));
+False = (\t.(\f.f));
+Not   = (\b.((b False) True));
+And   = (\b.(\c.((b c) False)));
+Or    = (\b.(\c.((b True) c)));
+
+# --- Pairs -----------------------------------------------------------
+
+# These are the important facts about pairs & their operations
+#
+#    (Fst ((Pair m) n)) -->* m
+#    (Snd ((Pair m) n)) -->* n
+
+Pair = (\x.(\y.(\b.((b x) y))));
+Fst = (\p.(p True));
+Snd = (\p.(p False));
+
+
+# --- Arithmetic functions --------------------------------------------
+
+# These are the important facts about Church numerals
+#
+#    Succ n    -->*  (n+1)
+#    Plus  n m -->*  (n+m)
+#    Times n m -->*  (nm)
+#
+#    Pred n    -->*  (n-1)  if n > 0
+#    Pred 0    -->*  0
+#    Monus n m -->*  (n-m)  if n > m
+#    Monus n m -->*  0      if n <= m
+#
+#    IsZero n  -->*  True   if n == 0
+#    IsZero n  -->*  False  if n > 0
+#
+#    0 M N    -->*  N
+#    1 M N    -->*  M N
+#    2 M N    -->*  M (M N)
+#    3 M N    -->*  M (M (M N))
+#    4 M N    -->*  M (M (M (M N)))
+#    ...etc...
+
+# Turns the church numeral for number n 
+#   (which gives you a way of applying f n-times-in-a-row to b)
+# into a function that applies f (n+1)-times-in-a-row to b
+#   (i.e., the Church numeral for n+1)
+# Specifically, it returns a function that
+#   applies f n-times-in-a-row to (f b).
+Succ = (\n.(\f.(\b. ((n f) (f b)))));
+
+# Given the Church numerals for numbers n and m 
+#   (applied in succession)
+# returns a function that applies f (n+m) times to b
+#   (i.e., the Church numeral for n+m).
+# Specifically, it returns a function that
+#   applies f n-times to 
+#      (the result of applying f m-times to b)
+Plus = (\n.(\m.(\f.(\b. ((n f) ((m f) b))))));
+
+# One way to define products of Church numerals
+Times = (\n.(\m.(\f. (n (m f)))));
+
+Pred = (\n. (Fst ((n (\p.((Pair (Snd p)) (Succ (Snd p))))) ((Pair 0) 0))));
+Monus = (\n.(\m. ((m Pred) n)));
+IsZero = (\n. ((n (\x.False)) True));
+
+
+# --- Fixed point combinator (for the last question only) -------
+
+Y = (\f. ((\x.(f (x x))) (\x. (f (x x)))));
+
+###################################################################
+# Feel free to add any other helper definitions you need.
+# Obviously, the given definitions are all wrong!
+
+# 1. Leq  (for church numerals)
+
+Leq = 0;
+
+
+# 2. Equal  (for church numerals)
+
+Equal = 0;
+
+
+# 3. Maybe
+
+Nothing = 0;
+Just = 0;
+
+
+# 4. Lists revisited
+
+Nil = 0;
+Cons = 0;
+
+
+  # For the next three, we want functions that take one list and apply it to two
+  # appropriate arguments.
+IsEmpty = 0;
+Head = 0;
+Tail = 0;
+
+
+# 5. Trees
+
+Leaf = 0;
+Branch = 0;
+
+
+# 6. Fibonacci without recursion
+
+Fib = 0;
+
+
+# 7. 3n+1
+
+Step = 0;
+Tnpo = 0;
+

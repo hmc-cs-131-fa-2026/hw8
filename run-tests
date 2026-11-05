@@ -1,0 +1,3 @@
+#!/bin/sh
+# Runs the HW 8 tests against hw8.lc (or another .lc file given as an argument).
+cd "$(dirname "$0")" && exec runhaskell -itest test/LCGrader.hs -t test/hw8-tests "${1:-hw8.lc}"
